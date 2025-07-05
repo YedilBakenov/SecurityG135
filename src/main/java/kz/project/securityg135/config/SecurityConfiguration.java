@@ -1,6 +1,5 @@
 package kz.project.securityg135.config;
 
-import kz.project.securityg135.model.User;
 import kz.project.securityg135.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
