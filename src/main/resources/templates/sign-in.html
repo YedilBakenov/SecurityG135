@@ -1,34 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <title>Please sign in</title>
-  <link href="/default-ui.css" rel="stylesheet" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Please sign in</title>
+    <div th:insert="links.html"></div>
 </head>
 <body>
-<div class="content">
-  <form class="login-form" method="post" action="/auth">
-    <h2>Please sign in</h2>
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-6">
 
-    <p>
-      <label for="username" class="screenreader">Username</label>
-      <input type="text" id="username" name="email" placeholder="Email" required autofocus>
-    </p>
-    <p>
-      <label for="password" class="screenreader">Password</label>
-      <input type="password" id="password" name="password" placeholder="Password" required>
-    </p>
+        <div th:if="${param.error!=null}" class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>EMAIL OR PASSWORD INCORRECT!</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <form class="login-form" method="post" action="/auth">
+            <h2 class="justify-content-center">Please sign in</h2>
+            <p>
+                <label for="username" class="screenreader">Username</label>
+                <input type="text" class="form-control" id="username" name="email" placeholder="Email" required autofocus>
+            </p>
+            <p>
+                <label for="password" class="screenreader">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+            </p>
 
-    <input name="_csrf" type="hidden" value="9Wd4r7MFsMMZDdC6nkmlh4PdxJuDLmnDpeaoexmqzz1RS2SukF4ZyYE8gqU0buXbrGSRsLru6friH13uloDKGiqT_Q8yeFDL" />
-    <button type="submit" class="primary">Sign in</button>
-  </form>
-
-  <a href="/registration">SIGN UP</a>
-
-
+            <input name="_csrf" type="hidden"
+                   value="9Wd4r7MFsMMZDdC6nkmlh4PdxJuDLmnDpeaoexmqzz1RS2SukF4ZyYE8gqU0buXbrGSRsLru6friH13uloDKGiqT_Q8yeFDL"/>
+            <button type="submit" class=" btn btn-primary btn-sm">SIGN IN</button>
+        </form>
+        <div class="mt-2">
+          <a class="text-decoration-none btn btn-success btn-sm" href="/registration">SIGN UP</a>
+        </div>
+      </div>
+    </div>
 </div>
 </body>
 </html>

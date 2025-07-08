@@ -9,7 +9,7 @@ public interface UserService {
 
     User findUserByLogin(String login);
     Permission getBasePermission();
-    void addNewUser(User user, String rePassword);
+    String addNewUser(User user, String rePassword);
     void changePassword(String oldPassword, String newPassword, String reNewPassword);
 
 }

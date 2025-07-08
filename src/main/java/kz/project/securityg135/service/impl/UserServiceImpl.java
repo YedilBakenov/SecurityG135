@@ -32,18 +32,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addNewUser(User user, String rePassword) {
+    public String addNewUser(User user, String rePassword) {
         User userFromBase = userRepository.findUserByEmail(user.getEmail());
 
-        if(userFromBase!=null) return;
+        if(userFromBase!=null) return "email_exist";
 
-        if(!user.getPassword().equals(rePassword)) return;
+        if(!user.getPassword().equals(rePassword)) return "password_not_equals";
 
         user.setPermissions(List.of(getBasePermission()));
         user.setPassword(passwordEncoder.encode(rePassword));
 
         userRepository.save(user);
 
+        return "user_created";
     }
 
     public User getCurrentUserInSession(){

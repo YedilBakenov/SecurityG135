@@ -1,20 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <div th:insert="links.html"></div>
 </head>
 <body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div th:if="${param.email_exist!=null}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>USER WITH THIS EMAIL EXIST!</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <div th:if="${param.password_not_equals!=null}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>PASSWORDS ARE NOT EQUALS!</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <div th:if="${param.user_created!=null}" class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>USER CREATED IN SYSTEM!</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <form action="/registration" method="post">
 
-    <form action="/registration" method="post">
+                    <label>PLEASE ENTER EMAIL:</label>
 
-        <input type="email" name="email"> <br>
-        <input type="password" name="password"> <br>
-        <input type="password" name="rePassword"> <br>
+                    <input class="form-control" type="email" name="email">
 
-        <button>SIGN UP</button>
-    </form>
+                    <label>PLEASE ENTER PASSWORD:</label>
 
+                    <input class="form-control" type="password" name="password">
 
+                    <label>PLEASE RE ENTER PASSWORD:</label>
+
+                    <input class="form-control" type="password" name="rePassword">
+
+                    <button class="btn btn-success btn-sm">SIGN UP</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

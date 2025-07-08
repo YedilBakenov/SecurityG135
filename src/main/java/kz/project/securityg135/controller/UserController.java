@@ -51,14 +51,9 @@ public class UserController {
     @PostMapping(value = "/registration")
     public String register(User user, @RequestParam String rePassword){
 
-        System.out.println(user.getPassword());
-        System.out.println(user.getFullName());
-        System.out.println(user.getEmail());
-        System.out.println(rePassword);
+        String result =  userService.addNewUser(user, rePassword);
 
-        userService.addNewUser(user, rePassword);
-
-        return "redirect:/";
+        return "redirect:/registration?" + result;
     }
 
     @PreAuthorize("isAuthenticated()")
